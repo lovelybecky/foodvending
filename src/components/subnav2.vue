@@ -1,23 +1,22 @@
 <template>
-	<div id="subnav">
-		<div class="selector">
-			<img class="subicon" :src="imageUrl.homeIcon" >
+	<div id="outnav">
+		<router-link class="navselect" to="/home" exact>
+			<img class="subicon" :src="imageUrl.homeIcon">
 			<div class="subtitle">主页</div>
-		</div>
-		<div class="selector">
+		</router-link>
+		<router-link class="navselect" to="/scan" exact>
 			<img class="subicon" :src="imageUrl.scanIcon">
 			<div class="subtitle">扫描</div>
-		</div>
-		<div class="selector">
+		</router-link>
+		<router-link class="navselect" to="/my" exact>
 			<img class="subicon" :src="imageUrl.myIcon">
 			<div class="subtitle">我的</div>
-		</div>
+		</router-link>
 	</div>
 </template>
 
 <script>
 	export default{
-		name:"subNavigation",
 		data(){
 			return{
 				imageUrl:{
@@ -60,7 +59,7 @@
 </script>
 
 <style>
-	#subnav{
+	#outnav{
 		width: 100%;
 		display: flex;
 		justify-content: space-around;
@@ -69,13 +68,21 @@
 		position: fixed;
 		bottom: 0;
 	}
-	.selector{
+	.navselect{
 		display: flex;
 		flex-direction: column;
 		margin: 10px;
+		text-decoration: none;
+		color: #343A40;
 	}
 	.subicon{
 		height: 30px;
 		width: 30px;
+	}
+	.subtitle{
+		
+	}
+	.router-link-active{
+		color: #FFA500;
 	}
 </style>

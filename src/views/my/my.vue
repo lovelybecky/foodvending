@@ -1,8 +1,25 @@
 <template>
-	<div>my</div>
+	<div>
+		<div>my</div>
+		<subNav></subNav>
+	</div>
 </template>
 
 <script>
+	import subNav from '../../components/subnav2.vue';
+	export default{
+		components:{
+			subNav
+		},
+		data(){
+			return{
+				
+			}
+		},
+		methods:{
+			
+		}
+	}
 </script>
 
 <style>

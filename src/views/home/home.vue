@@ -13,7 +13,7 @@
 </template>
 
 <script>
-	import subNav from '../../components/subnav.vue';
+	import subNav from '../../components/subnav2.vue';
 	export default{
 		components:{
 			subNav

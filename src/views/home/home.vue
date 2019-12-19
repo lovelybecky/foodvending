@@ -3,8 +3,9 @@
 		<imgSwiper></imgSwiper>
 		<div id="mainmsg">
 			<div id="restmoney">余额:<span>${{money}}</span></div>
-			<div>抵用卷:<span></span>{{accouts}}张</div>	
+			<div>抵用卷:<span></span>{{discount}}张</div>	
 		</div>
+		<myLine></myLine>
 		<div id="new1">
 			<img src="../../assets/swipertest.jpg">
 		</div>
@@ -24,15 +25,17 @@
 	import subNav from '../../components/subnav2.vue';
 	//import imgSwiper from '../../components/swiper.vue';
 	import imgSwiper from './components/imgswiper.vue';
+	import myLine from '../../components/myline.vue';
 	export default{
 		components:{
 			subNav,
-			imgSwiper
+			imgSwiper,
+			myLine
 		},
 		data(){
 			return{
 				money:30,
-				accouts:3
+				discount:3
 			}
 		},
 		methods:{

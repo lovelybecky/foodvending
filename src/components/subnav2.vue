@@ -11,7 +11,7 @@
 		<router-link class="navselect" to="/my" exact>
 			<img class="subicon" :src="imageUrl.myIcon">
 			<div class="subtitle">我的</div>
-		</router-link>
+		</router-link>	
 	</div>
 </template>
 
@@ -61,12 +61,13 @@
 <style>
 	#outnav{
 		width: 100%;
-		display: flex;
-		justify-content: space-around;
+		height: 73px;
 		background-color: #F5F5F5;
 		margin: 0;
 		position: fixed;
 		bottom: 0;
+		display: flex;
+		justify-content: space-around;
 	}
 	.navselect{
 		display: flex;

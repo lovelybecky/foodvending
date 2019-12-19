@@ -1,26 +1,38 @@
 <template>
-	<div>
-		<div>picture</div>
-		<div>picture</div>
-		<div>
-			<div>余额</div>
-			<div>抵用卷</div>	
+	<div id="home">
+		<imgSwiper></imgSwiper>
+		<div id="mainmsg">
+			<div id="restmoney">余额:<span>${{money}}</span></div>
+			<div>抵用卷:<span></span>{{accouts}}张</div>	
 		</div>
-		<div>new1</div>
-		<div>new2</div>
+		<div id="new1">
+			<img src="../../assets/swipertest.jpg">
+		</div>
+		<div id="new2">
+			<div class="subnew">
+				<img src="../../assets/new2.jpg">
+			</div>
+			<div class="subnew">
+				<img src="../../assets/new2.jpg">
+			</div>
+		</div>
 		<subNav></subNav>
 	</div>
 </template>
 
 <script>
 	import subNav from '../../components/subnav2.vue';
+	//import imgSwiper from '../../components/swiper.vue';
+	import imgSwiper from './components/imgswiper.vue';
 	export default{
 		components:{
-			subNav
+			subNav,
+			imgSwiper
 		},
 		data(){
 			return{
-				
+				money:30,
+				accouts:3
 			}
 		},
 		methods:{
@@ -30,5 +42,30 @@
 </script>
 
 <style>
-	
+	#home{
+		margin-bottom: 73px;
+	}
+	#mainmsg{
+		display: flex;
+		justify-content: center;
+	}
+	#mainmsg div{
+		padding: 20px 40px;
+		font-size: 1.4em;
+		font-weight: bold;
+	}
+	#mainmsg span{
+		margin-left: 5px;
+	}
+	#restmoney{
+		border-right: 1px solid black;
+	}
+	#new1{
+		margin: 10px;
+	}
+	#new2{
+		display: flex;
+		justify-content: space-between;
+		margin: 10px;
+	}
 </style>

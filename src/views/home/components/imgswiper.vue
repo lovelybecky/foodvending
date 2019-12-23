@@ -63,21 +63,21 @@
 	}
 	#swiper{
 		width: 100%;
-		height: 200px;
+		height: 30vh;
 		margin: 0 auto;
 		overflow: hidden;
 		position: relative;
 	}
 	.swipercontainer{
 		width:100%;
-		height: 200px;
 	}
 	.swipercontainer li{
 		position: absolute;
+		width: 100%;
 	}
 	.swipercontainer img{
 		width: 100%;
-		height: 200px;
+		height: 30vh;
 	}
 	.swiperbutton{
 		position: absolute;

@@ -6,16 +6,18 @@
 			<div>抵用卷:<span></span>{{discount}}张</div>	
 		</div>
 		<myLine></myLine>
-		<div id="new1">
-			<img src="../../assets/swipertest.jpg">
-		</div>
-		<div id="new2">
-			<div class="subnew">
-				<img src="../../assets/new2.jpg">
+		<div style="">
+			<div id="new1">
+				<img src="../../assets/swipertest.jpg" width="100%">
 			</div>
-			<div class="subnew">
-				<img src="../../assets/new2.jpg">
-			</div>
+			<div id="new2">
+				<div class="subnew">
+					<img src="../../assets/new2.jpg" width="100%">
+				</div>
+				<div class="subnew">
+					<img src="../../assets/new2.jpg" width="100%">
+				</div>
+			</div>	
 		</div>
 		<subNav></subNav>
 	</div>
@@ -64,11 +66,16 @@
 		border-right: 1px solid black;
 	}
 	#new1{
-		margin: 10px;
+		margin: 10px auto;
+		width: 90%;
 	}
 	#new2{
 		display: flex;
 		justify-content: space-between;
-		margin: 10px;
+		margin: 10px auto;
+		width: 90%;	
+	}
+	.subnew{
+		width: 48%;
 	}
 </style>

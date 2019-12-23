@@ -2,7 +2,7 @@
 	<div id="myservice">
 		<div id="servicetitle">我的服务</div>
 		<div id="servicenav">
-			<div v-for="item in items" :key="item.id">
+			<div v-for="item in items" :key="item.id" @click="change(item.page)">
 				<img :src="item.url">
 				<div>{{item.title}}</div>
 			</div>
@@ -15,10 +15,15 @@
 		data(){
 			return{
 				items:[
-					{url:require('../../../assets/setting.png'),title:"设置"},
-					{url:require('../../../assets/share.png'),title:"分享有礼"},
-					{url:require('../../../assets/kefu.png'),title:"联系客服"}
+					{url:require('../../../assets/setting.png'),title:"设置",page:'/setting'},
+					{url:require('../../../assets/share.png'),title:"分享有礼",page:'/setting'},
+					{url:require('../../../assets/kefu.png'),title:"联系客服",page:'/service'}
 				]
+			}
+		},
+		methods:{
+			change(address){
+				this.$router.push(address);
 			}
 		}
 	}

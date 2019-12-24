@@ -2,6 +2,7 @@
 	<div id="item">
 		<div>{{resdata}}</div>
 		<div @click="change">
+			<span>{{opdata}}</span>
 			<img src="../assets/into.png">
 		</div>
 	</div>
@@ -10,7 +11,8 @@
 <script>
 	export default{
 		props:{
-			resdata:String
+			resdata:String,
+			opdata:String
 		},
 		methods:{
 			change(){
@@ -34,5 +36,11 @@
 	#item img{
 		height: 25px;
 		width: 25px;
+		vertical-align: middle;
+	}
+	#item span{
+		color: gray;
+		line-height: 25px;
+		vertical-align: middle;
 	}
 </style>

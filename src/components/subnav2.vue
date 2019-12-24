@@ -62,7 +62,7 @@
 	#outnav{
 		width: 100%;
 		height: 73px;
-		background-color: #F5F5F5;
+		background-color: #FFFFFF;
 		margin: 0;
 		position: fixed;
 		bottom: 0;

@@ -1,5 +1,5 @@
 <template>
-	<div id="accountmsg">
+	<div id="mainmsg">
 		<div class="subacmsg" style="border-right: 1px solid #BEBEBE;">
 			<div style="font-size: 1.4em; font-weight: bold;">${{restmoney}}</div>
 			<div>账户余额</div>
@@ -22,8 +22,8 @@
 	}
 </script>
 
-<style>
-	#accountmsg{
+<style scoped>
+	#mainmsg{
 		width: 90%;
 		background-color: #FFFFFF;
 		border-radius: 10px;

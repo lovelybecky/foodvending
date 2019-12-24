@@ -2,7 +2,7 @@
 	<div id="myorder">
 		<div id="ordertitle">我的订单</div>
 		<div id="ordernav">
-			<div v-for="item in items" :key="item.id">
+			<div v-for="(item,index) in items" :key="item.id" @click="change(item.page,index)">
 				<img :src="item.url">
 				<div>{{item.title}}</div>
 			</div>
@@ -15,11 +15,22 @@
 		data(){
 			return{
 				items:[
-					{url:require('../../../assets/orders.png'),title:"全部"},
-					{url:require('../../../assets/pay.png'),title:"未付款"},
-					{url:require('../../../assets/package.png'),title:"未发货"},
-					{url:require('../../../assets/deliver.png'),title:"已发货"}
-				]
+					{url:require('../../../assets/orders.png'),title:"全部",page:'/my/order'},
+					{url:require('../../../assets/pay.png'),title:"未付款",page:'/my/order'},
+					{url:require('../../../assets/package.png'),title:"未发货",page:'/my/order'},
+					{url:require('../../../assets/deliver.png'),title:"已发货",page:'/my/order'}
+				],
+				test:0
+			}
+		},
+		methods:{
+			change:function(address,index){
+				console.log(index);
+				this.$router.push({
+					path:address,
+					name:'myorder',
+					params:{pageindex:index}
+				});
 			}
 		}
 	}

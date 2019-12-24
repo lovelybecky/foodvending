@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div id="scan">
 		<div id="toppart">
 			<div>扫描二维码即可完成付款</div>
 			<div id="qrcode">
@@ -9,12 +9,11 @@
 			<myButton :resdata="chargebutton" @change="chargepage" style="margin: 10px auto;"></myButton>
 		</div>
 		<myLine></myLine>
-		<div>
-			<div></div>
-			<div></div>
-			<div></div>
+		<div v-for="item in items" :key="item.id">
+			<discount :type="item.label"></discount>
 		</div>
 		<subNav></subNav>
+		
 	</div>
 </template>
 
@@ -22,29 +21,42 @@
 	import subNav from '../../components/subnav2.vue';
 	import myButton from '../../components/mybutton.vue';
 	import myLine from '../../components/myline.vue';
+	import discount from './components/discount.vue'
 	export default{
 		components:{
 			subNav,
 			myButton,
-			myLine
+			myLine,
+			discount
 		},
 		data(){
 			return{
 				chargebutton:"充值",
-				money:30
+				money:30,
+				items:[
+					{label:""},
+					{label:"used"},
+					{label:"expired"}
+				]
 			}
 		},
 		methods:{
 			async chargepage(){
 				this.$router.push('/charge');
 			}
-		}
+		}	
 	}
 </script>
 
 <style>
+	#scan{
+		margin-bottom: 73px;
+		background: #F5F5F5;
+		height: 100vh;
+	}
 	#toppart{
 		margin-top: 20px;
+		background: #FFFFFF;
 	}
 	#qrcode{
 		width: 200px;

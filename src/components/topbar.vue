@@ -49,6 +49,5 @@
 		padding-bottom: 15px;
 		font-size: 1.3em;
 		font-weight: bold;
-		border-bottom: 1px solid #BEBEBE;
 	}
 </style>

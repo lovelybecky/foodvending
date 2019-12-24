@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div id="login">
 		<div id="logo">LOGO</div>
 		<div>
 			<div>
@@ -40,6 +40,13 @@
 </script>
 
 <style>
+	#login{
+		height: 100vh;
+		background: #FFFFFF;
+		margin: 0;
+		padding: 0;
+		border: 1px solid #FFFFFF;
+	}
 	#logo{
 		margin: 100px auto 20px auto;
 		height: 100px; 

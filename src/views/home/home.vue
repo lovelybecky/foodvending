@@ -6,7 +6,7 @@
 			<div>抵用卷:<span></span>{{discount}}张</div>	
 		</div>
 		<myLine></myLine>
-		<div style="">
+		<div>
 			<div id="new1">
 				<img src="../../assets/swipertest.jpg" width="100%">
 			</div>
@@ -46,13 +46,17 @@
 	}
 </script>
 
-<style>
+<style scoped>
 	#home{
 		margin-bottom: 73px;
+		background: #F5F5F5;
+		height: 100vh;
 	}
 	#mainmsg{
 		display: flex;
 		justify-content: center;
+		background: #FFFFFF;
+		padding: 5px 0;
 	}
 	#mainmsg div{
 		padding: 20px 40px;

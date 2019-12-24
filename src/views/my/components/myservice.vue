@@ -15,9 +15,9 @@
 		data(){
 			return{
 				items:[
-					{url:require('../../../assets/setting.png'),title:"设置",page:'/setting'},
-					{url:require('../../../assets/share.png'),title:"分享有礼",page:'/setting'},
-					{url:require('../../../assets/kefu.png'),title:"联系客服",page:'/service'}
+					{url:require('../../../assets/setting.png'),title:"设置",page:'/my/setting'},
+					{url:require('../../../assets/share.png'),title:"分享有礼",page:'/my/setting'},
+					{url:require('../../../assets/kefu.png'),title:"联系客服",page:'/my/service'}
 				]
 			}
 		},

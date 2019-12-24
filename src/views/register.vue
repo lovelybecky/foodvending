@@ -1,5 +1,5 @@
 <template>
-	<div>
+	<div id="registe">
 		<div id="logo">LOGO</div>
 		<div>
 			<div>
@@ -43,6 +43,11 @@
 </script>
 
 <style>
+	#registe{
+		border: 1px solid #FFFFFF;
+		background: #FFFFFF;
+		height: 100vh;
+	}
 	#checkbox{
 		display: flex;
 		justify-content: space-around;

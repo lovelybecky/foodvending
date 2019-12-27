@@ -1,11 +1,11 @@
 <template>
 	<div id="mainmsg">
 		<div class="subacmsg" style="border-right: 1px solid #BEBEBE;">
-			<div style="font-size: 1.4em; font-weight: bold;">${{restmoney}}</div>
+			<div style="font-size: 1.4em; font-weight: bold;">${{account.money}}</div>
 			<div>账户余额</div>
 		</div>
 		<div class="subacmsg" >
-			<div style="font-size: 1.4em; font-weight: bold;">{{discount}}张</div>
+			<div style="font-size: 1.4em; font-weight: bold;">{{account.items}}张</div>
 			<div>优惠券</div>
 		</div>	
 	</div>
@@ -15,8 +15,12 @@
 	export default{
 		data(){
 			return{
-				restmoney:"30",
-				discount:"3"
+				
+			}
+		},
+		computed:{
+			account(){
+				return this.$store.state.account;
 			}
 		}
 	}

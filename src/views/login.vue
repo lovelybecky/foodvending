@@ -3,10 +3,10 @@
 		<div id="logo">LOGO</div>
 		<div>
 			<div>
-				<input class="input" type="text" placeholder="用户名/手机号">
+				<input class="input" v-model="username" type="text" placeholder="用户名/手机号">
 			</div>
 			<div>
-				<input class="input" type="password" placeholder="密码">
+				<input class="input" v-model="password" type="password" placeholder="密码">
 			</div>
 			<div id="submsg">
 				<div @click="registerNew">注册</div>
@@ -25,7 +25,9 @@
 		},
 		data(){
 			return{
-				loginbutton:"登录"
+				loginbutton:"登录",
+				username:'',
+				password:''
 			}
 		},
 		methods:{
@@ -33,7 +35,30 @@
 				this.$router.push('/register');
 			},
 			async loginmain(){
-				this.$router.push('/home');
+				let loginForm = {
+					name: this.username,
+					pwd: this.password
+				}
+				if(!this.username){
+					alert('请输入用户名');
+				}
+				else if(!this.password){
+					alert('请输入密码')
+				}
+				else{
+					let res = await this.$http.post('/users/login', loginForm);
+					console.log(res.data);
+					if(res.data.status===1){
+						alert('密码错误');
+					}
+					else if(res.data.status===2){
+						alert('用户名未注册');
+					}
+					else{
+						this.$router.push('/home');
+						this.$store.commit('storeUser', res.data.data);
+					}
+				}
 			}
 		}
 	}

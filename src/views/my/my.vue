@@ -6,9 +6,9 @@
 					<img src="../../assets/userhead.jpeg">
 				</div>
 				<div id="useraccount">
-					<div>姓名：{{username}}</div>
-					<div>电话：{{usertel}}</div>
-					<div>积分：{{userpoints}}</div>
+					<div>姓名：{{user.name}}</div>
+					<div>电话：{{user.tel}}</div>
+					<div>积分：{{user.points}}</div>
 				</div>
 			</div>
 			<mainMsg></mainMsg>
@@ -36,6 +36,11 @@
 				username:"Adam",
 				usertel:"12345678",
 				userpoints:"60",
+			}
+		},
+		computed:{
+			user(){
+				return this.$store.state.user;
 			}
 		},
 		methods:{

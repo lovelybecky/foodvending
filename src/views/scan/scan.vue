@@ -5,12 +5,12 @@
 			<div id="qrcode">
 				<img src="../../assets/qrcode.jpg">
 			</div>
-			<div id="qrmoney">账户余额：<span>${{money}}</span></div>
+			<div id="qrmoney">账户余额：<span>${{account.money}}</span></div>
 			<myButton :resdata="chargebutton" @change="chargepage" style="margin: 10px auto;"></myButton>
 		</div>
 		<myLine></myLine>
-		<div v-for="item in items" :key="item.id">
-			<discount :type="item.label"></discount>
+		<div v-for="item in account.discounts" :key="item.id">
+			<discount :type="item.type"></discount>
 		</div>
 		<subNav></subNav>
 		
@@ -31,13 +31,12 @@
 		},
 		data(){
 			return{
-				chargebutton:"充值",
-				money:30,
-				items:[
-					{label:""},
-					{label:"used"},
-					{label:"expired"}
-				]
+				chargebutton:"充值"
+			}
+		},
+		computed:{
+			account(){
+				return this.$store.state.account;
 			}
 		},
 		methods:{
@@ -52,10 +51,10 @@
 	#scan{
 		margin-bottom: 73px;
 		background: #F5F5F5;
-		height: 100vh;
+		min-height: 100vh;
 	}
 	#toppart{
-		margin-top: 20px;
+		padding-top: 20px;
 		background: #FFFFFF;
 	}
 	#qrcode{

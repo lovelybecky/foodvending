@@ -36,12 +36,32 @@
 		},
 		data(){
 			return{
-				money:30,
-				discount:3
+				money:0,
+				discount:0
 			}
 		},
+		created() {
+			this.getAccount();
+		},
+		computed:{
+			user(){
+				return this.$store.state.user;
+			},
+			/*account(){
+				return this.$store.state.account;
+			}*/
+		},
 		methods:{
-			
+			async getAccount(){
+				let enter={
+					name:this.user.name
+				}
+				let res = await this.$http.post('/users/account', enter);
+				this.$store.commit('storeAccount', res.data);
+				console.log(res.data);
+				this.money=res.data.money;
+				this.discount=res.data.items;
+			}
 		}
 	}
 </script>
@@ -50,7 +70,7 @@
 	#home{
 		margin-bottom: 73px;
 		background: #F5F5F5;
-		height: 100vh;
+		min-height: 100vh;
 	}
 	#mainmsg{
 		display: flex;

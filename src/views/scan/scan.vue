@@ -7,6 +7,7 @@
 			</div>
 			<div id="qrmoney">账户余额：<span>${{account.money}}</span></div>
 			<myButton :resdata="chargebutton" @change="chargepage" style="margin: 10px auto;"></myButton>
+			<myButton :resdata="buybutton" @change="buyproduct" style="margin: 10px auto;"></myButton>
 		</div>
 		<myLine></myLine>
 		<div v-for="item in account.discounts" :key="item.id">
@@ -33,6 +34,7 @@
 		data(){
 			return{
 				chargebutton:"充值",
+				buybutton:"购买",
 				qrcodeurl:""
 			}
 		},
@@ -48,6 +50,10 @@
 					}
 				}
 			);
+			
+			this.sockets.subscribe('orderresult',(data)=>{
+				console.log(data)
+			});
 		},
 		computed:{
 			user(){
@@ -60,6 +66,12 @@
 		methods:{
 			async chargepage(){
 				this.$router.push('/charge');
+			},
+			buyproduct(){
+				this.$socket.emit('order',{
+					username:this.user.name,
+					money:this.account.money
+				});
 			}
 		}	
 	}

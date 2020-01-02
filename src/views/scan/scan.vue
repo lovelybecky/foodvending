@@ -3,7 +3,7 @@
 		<div id="toppart">
 			<div>扫描二维码即可完成付款</div>
 			<div id="qrcode">
-				<img src="../../assets/qrcode.jpg">
+				<img :src="qrcodeurl">
 			</div>
 			<div id="qrmoney">账户余额：<span>${{account.money}}</span></div>
 			<myButton :resdata="chargebutton" @change="chargepage" style="margin: 10px auto;"></myButton>
@@ -18,6 +18,7 @@
 </template>
 
 <script>
+	import QRcode from "qrcode";
 	import subNav from '../../components/subnav2.vue';
 	import myButton from '../../components/mybutton.vue';
 	import myLine from '../../components/myline.vue';
@@ -31,10 +32,27 @@
 		},
 		data(){
 			return{
-				chargebutton:"充值"
+				chargebutton:"充值",
+				qrcodeurl:""
 			}
 		},
+		mounted() {
+			let segs=this.user.name+" "+this.account.money;
+			let self=this;
+			QRcode.toDataURL(
+				segs,
+				{errorCorrectionLevel:"H",version:4},
+				function(err,url){
+					if(!err){
+						self.qrcodeurl=url;
+					}
+				}
+			);
+		},
 		computed:{
+			user(){
+				return this.$store.state.user;
+			},
 			account(){
 				return this.$store.state.account;
 			}
@@ -65,6 +83,10 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
+	}
+	#qrcode img{
+		width: 200px;
+		height: 200px;
 	}
 	#qrmoney{
 		font-size: 1.4em;

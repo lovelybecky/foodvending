@@ -1,8 +1,8 @@
 <template>
 	<div id="orderitem">
 		<div class="itemtop">
-			<div>2019/09/01</div>
-			<div>{{state}}</div>
+			<div>{{state.date}}</div>
+			<div v-bind:style="fontcolor(state.status)">{{state.status}}</div>
 		</div>
 		<div class="itemmid">
 			<div class="table">
@@ -11,17 +11,17 @@
 					<div class="tablenumber">数量</div>
 					<div class="tableprice">价格</div>
 				</div>
-				<div class="tablerow">
-					<div class="tableproduct">橙汁</div>
-					<div class="tablenumber">x1</div>
-					<div class="tableprice">$2.00</div>
+				<div class="tablerow" v-for="item in state.products" :key="item.id">
+					<div class="tableproduct">{{item.product}}</div>
+					<div class="tablenumber">x{{item.num}}</div>
+					<div class="tableprice">${{item.price}}</div>
 				</div>
 			</div>
-			<div class="totalprice">总价：$2.00</div>
+			<div class="totalprice">总价：${{state.allprice}}</div>
 		</div>
 		<div class="itemend">
-			<div>付款方式：</div>
-			<div>付款状态：</div>
+			<div>付款方式：{{state.method}}</div>
+			<div>付款状态：{{state.paystatus}}</div>
 		</div>
 	</div>
 </template>
@@ -29,7 +29,60 @@
 <script>
 	export default{
 		props:{
-			state:String
+			state:Object
+		},
+		data(){	
+			return{
+				ordersta:""
+			}
+		},
+		computed:{
+			fontcolor:function(){
+				return function(sta){
+					if(sta==='未处理'){
+						return{
+							color:'red'
+						}
+					}
+					else if(sta==='处理中'){
+						return{
+							color:'orange'
+						}
+					}
+					if(sta==='配送中'){
+						return{
+							color:'black'
+						}
+					}
+					if(sta==='售后中'){
+						return{
+							color:'blue'
+						}
+					}
+					if(sta==='已完成'){
+						return{
+							color:'green'
+						}
+					}
+				}
+			}
+			/*orderSta:function(){
+				if(this.state.status==='unpaid'){
+					return this.ordersta='未处理'
+				}
+				else if(this.state.status==='dealing'){
+					return this.ordersta='处理中'
+				}
+				else if(this.state.status==='delivery'){
+					return this.ordersta='配送中'
+				}
+				else if(this.state.status==='service'){
+					return this.ordersta='售后中'
+				}
+				else{
+					return this.ordersta='已完成'
+				}
+			}*/
 		},
 		methods:{
 	

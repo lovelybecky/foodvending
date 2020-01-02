@@ -3,12 +3,12 @@
 		<topBar :resdata="bartitle"></topBar>
 		<div id="topnav">	
 			<div v-for="(title,index) in titles" :key="index">
-				<div v-bind:style="fontcolor(index)" @click="titlechange(title.name)">{{title.name}}</div>
+				<div v-bind:style="fontcolor(index)" @click="changeOrder(index)">{{title.name}}</div>
 			</div>
 		</div>
 		
-		<div v-for="order in filterorders" :key="order.id">
-			<orderItem :state="order.state"></orderItem>
+		<div v-for="order in orders" :key="order.id">
+			<orderItem :state="order"></orderItem>
 		</div>
 		
 	</div>
@@ -32,22 +32,19 @@
 					{name:"配送中"},
 					{name:"售后/退款"}
 				],
-				orders:[
-					{state:"未处理"},
-					{state:"处理中"},
-					{state:"配送中"},
-					{state:"已完成"},
-					{state:"售后中"}
-				],
+				orders:null,
 				orderselect:"",
 				titleselect:0
 			}
 		},
 		created() {
-			console.log(this.$route.params.pageindex);
 			this.titleselect= this.$route.params.pageindex;
+			this.getOrders();
 		},
 		computed:{
+			user(){
+				return this.$store.state.user;
+			},
 			fontcolor:function(){
 				return function(index){
 					if(index===this.titleselect){
@@ -57,14 +54,53 @@
 					}
 				}	
 			},
-			filterorders:function(){
+			/*filterorders:function(){
 				return this.orders.filter((order)=>{
 					return order.state.match(this.orderselect)
 				});
-			}	
+			}	*/
 		},
 		methods:{
-			titlechange(name){
+			async getOrders(){
+				let enter=null;
+				if(this.titleselect===0){
+					enter={
+						name:this.user.name,
+					}	
+				}
+				else if(this.titleselect===1){
+					enter={
+						name:this.user.name,
+						status:'unpaid'
+					}	
+				}
+				else if(this.titleselect===2){
+					enter={
+						name:this.user.name,
+						status:'dealing'
+					}	
+				}
+				else if(this.titleselect===3){
+					enter={
+						name:this.user.name,
+						status:'delivery'
+					}	
+				}
+				else if(this.titleselect===4){
+					enter={
+						name:this.user.name,
+						status:'service'
+					}	
+				}
+				let res = await this.$http.post('/users/orders', enter);
+				console.log(res.data);
+				this.orders=res.data.orders;
+			},
+			changeOrder(index){
+				this.titleselect=index;
+				this.getOrders();
+			}
+			/*titlechange(name){
 				if(name==='全部订单'){
 					this.orderselect="";
 					this.titleselect=0;
@@ -85,7 +121,7 @@
 					this.orderselect="售后中";
 					this.titleselect=4;
 				}
-			}
+			}*/
 		}
 	}
 </script>

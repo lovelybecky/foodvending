@@ -1,34 +1,36 @@
 <template>
 	<div>
-		<div>充值</div>
-		<div>
-			<img :src="qrcodeurl">
-		</div>	
+		<button
+			type="button"
+			class="btn"
+			@click="showPopup">
+			Click me
+		</button>
+		<popup
+			v-show="isPopupVisible"
+			@close="closePopup">
+		</popup>
 	</div>
 </template>
 
 <script>
-	import QRcode from "qrcode";
+	import popup from '../../components/dialogue.vue'
 	export default{
-		data(){
-			return{
-				qrcodeurl:""
+		components:{
+			popup
+		},
+		data (){
+			return {
+				isPopupVisible: false
 			}
 		},
-		mounted() {
-			let self=this;
-			let segs=[
-				{data:'aasdag'},
-				{data:'098987'}
-			]
-			QRcode.toDataURL(
-				segs,
-				function(err,url){
-					if(!err){
-						self.qrcodeurl=url;
-					}
-				}
-			);
+		methods: {
+			showPopup(){
+				this.isPopupVisible = true
+			},
+			closePopup(){
+				this.isPopupVisible = false
+			}
 		}
 	}
 </script>

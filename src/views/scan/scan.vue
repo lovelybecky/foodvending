@@ -14,7 +14,11 @@
 			<discount :type="item.type"></discount>
 		</div>
 		<subNav></subNav>
-		
+		<popup
+			v-show="isPopupVisible"
+			@close="closePopup"
+			:resdata="dialogtext">
+		</popup>
 	</div>
 </template>
 
@@ -23,23 +27,27 @@
 	import subNav from '../../components/subnav2.vue';
 	import myButton from '../../components/mybutton.vue';
 	import myLine from '../../components/myline.vue';
-	import discount from './components/discount.vue'
+	import discount from './components/discount.vue';
+	import popup from '../../components/dialogue.vue'
 	export default{
 		components:{
 			subNav,
 			myButton,
 			myLine,
-			discount
+			discount,
+			popup
 		},
 		data(){
 			return{
 				chargebutton:"充值",
 				buybutton:"购买",
-				qrcodeurl:""
+				qrcodeurl:"",
+				isPopupVisible: false,
+				dialogtext:""
 			}
 		},
 		mounted() {
-			let segs=this.user.name+" "+this.account.money;
+			let segs="http://localhost:8080/scan/"+this.user.name+this.account.money;
 			let self=this;
 			QRcode.toDataURL(
 				segs,
@@ -52,7 +60,9 @@
 			);
 			
 			this.sockets.subscribe('orderresult',(data)=>{
-				console.log(data)
+				console.log(data);
+				this.isPopupVisible = true;
+				this.dialogtext=data.msg;
 			});
 		},
 		computed:{
@@ -72,6 +82,9 @@
 					username:this.user.name,
 					money:this.account.money
 				});
+			},
+			closePopup(){
+				this.isPopupVisible = false
 			}
 		}	
 	}
